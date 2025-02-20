@@ -1,6 +1,7 @@
 package com.samer.dipartimenti_corsi.servizi;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -13,7 +14,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
+
 
 @Service
 public class StudenteService {
@@ -49,7 +50,7 @@ public class StudenteService {
   }
 
   public List<Studente> getStudenti() {
-      return studenteRepository.findAll();
+      return studenteRepository.findAll(Sort.by(Sort.Order.desc("id")));
   }
   
   
