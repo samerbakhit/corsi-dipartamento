@@ -2,6 +2,7 @@ package com.samer.dipartimenti_corsi.models;
 
 import java.util.Date;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -20,16 +21,10 @@ public class Studente {
 
     private String nome;
     private String cognome;
+    
     private String email;
     @Temporal(TemporalType.DATE)
     private Date dataNascita;
-    
-	public Date getDataNascita() {
-		return dataNascita;
-	}
-	public void setDataNascita(Date dataNascita) {
-		this.dataNascita = dataNascita;
-	}
 	public Long getId() {
 		return id;
 	}
@@ -54,17 +49,12 @@ public class Studente {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public Studente(Long id, String nome, String cognome, String email) {
-		super();
-		this.id = id;
-		this.nome = nome;
-		this.cognome = cognome;
-		this.email = email;
+	public Date getDataNascita() {
+		return dataNascita;
 	}
-	public Studente() {
-		super();
+	public void setDataNascita(Date dataNascita) {
+		this.dataNascita = dataNascita;
 	}
-
 	public Studente(Long id, String nome, String cognome, String email, Date dataNascita) {
 		super();
 		this.id = id;
@@ -80,7 +70,10 @@ public class Studente {
 		this.email = email;
 		this.dataNascita = dataNascita;
 	}
-	
+	public Studente() {
+		super();
+	}
+    
 
 
 

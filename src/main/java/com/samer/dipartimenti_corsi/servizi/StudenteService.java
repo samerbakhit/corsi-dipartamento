@@ -9,8 +9,10 @@ import com.samer.dipartimenti_corsi.DTO.StudenteDTO;
 import com.samer.dipartimenti_corsi.models.Studente;
 import com.samer.dipartimenti_corsi.repositories.Studenterepository;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -33,13 +35,17 @@ public class StudenteService {
       ResponseEntity<StudenteDTO[]> response = restTemplate.getForEntity(url, StudenteDTO[].class);
       List<StudenteDTO> studentiDTO = Arrays.asList(response.getBody());
 
-      // Convertiamo StudenteDTO in Studente e lo salviamo nel database
-      List<Studente> studenti = studentiDTO.stream()
-              .map(dto -> new Studente(dto.getNome(), dto.getCognome(), dto.getEmail(),dto.getDataNascita()))
-              .collect(Collectors.toList());
+      List<Studente> studentiSalvati = new ArrayList<>();
 
-      studenteRepository.saveAll(studenti);
-      return studenti;
+      for (StudenteDTO dto : studentiDTO) {
+          Optional<Studente> esistente = studenteRepository.findByEmail(dto.getEmail());
+          if (esistente.isEmpty()) { // Se lo studente NON esiste, lo salviamo
+              Studente nuovoStudente = new Studente(dto.getNome(), dto.getCognome(), dto.getEmail(),dto.getDataNascita());
+              studentiSalvati.add(nuovoStudente);
+          }
+      }
+      studenteRepository.saveAll(studentiSalvati);
+      return studentiSalvati;
   }
 
   public List<Studente> getStudenti() {
