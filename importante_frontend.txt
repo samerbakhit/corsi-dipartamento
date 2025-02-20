@@ -1,0 +1,36 @@
+ http://localhost:3001/edituser/$%7Buser.id%7D
+Questo accade perché stai utilizzando le virgolette singole ' ' invece dei backticks `` per le stringhe template.
+
+
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+tabella per mostrare il combox :
+----------------------------------------------------------------------------
+       <tbody>
+        {corsi.map((corso) => (
+  <tr key={corso.id}>
+    <td>{corso.id}</td>
+    <td>{corso.nome}</td>
+    <td>{corso.descrizione}</td>
+    <td>{corso.crediti} CFU</td>
+    <td>
+      {corso.dipartamento && corso.dipartamento.nome && corso.dipartamento.sede ? (
+        `${corso.dipartamento.nome} (${corso.dipartamento.sede})`
+      ) : (
+        "Dipartimento non disponibile"
+      )}
+    </td>
+              <td>
+---------------------------------------------------------------------------------------
+Routes
+-----------------------------------------------------------------
+    <Router>
+   <Layout/>
+      <Routes>
+    
+        <Route path="/" element={<CorsiList />} />
+        <Route path="/AddCorso" element={<AddCorso />} />
+        <Route path="/viewcorso/:id" element={<ViewCorso />} />
+        <Route path="/editcorso/:id" element={<UpdateCorso />} />
+        {/* Altri percorsi */}
+      </Routes>
+    </Router>
