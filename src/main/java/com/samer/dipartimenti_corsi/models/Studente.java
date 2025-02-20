@@ -1,10 +1,14 @@
 package com.samer.dipartimenti_corsi.models;
 
+import java.util.Date;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 
 @Entity
 @Table(name = "studenti")
@@ -17,6 +21,15 @@ public class Studente {
     private String nome;
     private String cognome;
     private String email;
+    @Temporal(TemporalType.DATE)
+    private Date dataNascita;
+    
+	public Date getDataNascita() {
+		return dataNascita;
+	}
+	public void setDataNascita(Date dataNascita) {
+		this.dataNascita = dataNascita;
+	}
 	public Long getId() {
 		return id;
 	}
@@ -51,12 +64,23 @@ public class Studente {
 	public Studente() {
 		super();
 	}
-	public Studente(String nome, String cognome, String email) {
+
+	public Studente(Long id, String nome, String cognome, String email, Date dataNascita) {
+		super();
+		this.id = id;
+		this.nome = nome;
+		this.cognome = cognome;
+		this.email = email;
+		this.dataNascita = dataNascita;
+	}
+	public Studente(String nome, String cognome, String email, Date dataNascita) {
 		super();
 		this.nome = nome;
 		this.cognome = cognome;
 		this.email = email;
+		this.dataNascita = dataNascita;
 	}
+	
 
 
 

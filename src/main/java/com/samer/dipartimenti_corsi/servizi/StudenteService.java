@@ -35,7 +35,7 @@ public class StudenteService {
 
       // Convertiamo StudenteDTO in Studente e lo salviamo nel database
       List<Studente> studenti = studentiDTO.stream()
-              .map(dto -> new Studente(dto.getNome(), dto.getCognome(), dto.getEmail()))
+              .map(dto -> new Studente(dto.getNome(), dto.getCognome(), dto.getEmail(),dto.getDataNascita()))
               .collect(Collectors.toList());
 
       studenteRepository.saveAll(studenti);
