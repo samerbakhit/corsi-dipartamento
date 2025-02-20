@@ -1,5 +1,7 @@
 package com.samer.dipartimenti_corsi.models;
 
+import org.springframework.context.annotation.Bean;
+
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -77,5 +79,7 @@ public class Corso {
 	public Corso() {
 		super();
 	}
+
+
 
 }

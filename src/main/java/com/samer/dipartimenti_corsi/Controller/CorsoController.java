@@ -13,14 +13,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.samer.dipartimenti_corsi.DTO.CorsoDTO;
+import com.samer.dipartimenti_corsi.DTO.StudenteDTO;
 import com.samer.dipartimenti_corsi.models.Corso;
 import com.samer.dipartimenti_corsi.servizi.CorsoService;
 import com.samer.dipartimenti_corsi.servizi.DipartimentoServizi;
+import com.samer.dipartimenti_corsi.servizi.StudenteService;
 
 @RestController
 @RequestMapping("/api/corsi")
 public class CorsoController {
-	
+	@Autowired
+	StudenteService ss;
 	@Autowired
 	CorsoService cs;
 	@Autowired
@@ -59,5 +62,9 @@ public class CorsoController {
 		cs.updateCorso(corsoDto, id);
 		return " Il corso "+corsoDto.getNome()+" e stato aggiornato con sucesso"; 
 	}
+	@GetMapping("/studenti")
+	public List<StudenteDTO> getStudenti() {
+        return ss.getStudentiFromMicroservizio();
+    }
 
 }

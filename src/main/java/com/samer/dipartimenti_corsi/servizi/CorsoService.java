@@ -5,8 +5,10 @@ import java.util.Optional;
 
 import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import com.samer.dipartimenti_corsi.DTO.CorsoDTO;
 import com.samer.dipartimenti_corsi.exception.CorsoNotFoundException;
@@ -24,6 +26,12 @@ public class CorsoService {
 CorsoRepository cr;
 @Autowired 
 DipartimentoRepository dr;
+
+
+
+@Autowired
+StudenteService ss;
+
 
 
 public List<Corso>findAllCorsi(){
